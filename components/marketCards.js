@@ -19,38 +19,29 @@ const subCategories = [
 ]
 const filters = [
   {
-    id: 'color',
-    name: 'Color',
+    id: 'cardType',
+    name: 'Card Type',
     options: [
-      { value: 'white', label: 'White', checked: false },
-      { value: 'beige', label: 'Beige', checked: false },
-      { value: 'blue', label: 'Blue', checked: true },
-      { value: 'brown', label: 'Brown', checked: false },
-      { value: 'green', label: 'Green', checked: false },
-      { value: 'purple', label: 'Purple', checked: false },
+      { value: 'gold', label: 'Gold', checked: false },
+      { value: 'silver', label: 'Silver', checked: false },
+      { value: 'bronze', label: 'Bronze', checked: true },
     ],
   },
   {
-    id: 'category',
-    name: 'Category',
+    id: 'position',
+    name: 'Position',
     options: [
-      { value: 'new-arrivals', label: 'New Arrivals', checked: false },
-      { value: 'sale', label: 'Sale', checked: false },
-      { value: 'travel', label: 'Travel', checked: true },
-      { value: 'organization', label: 'Organization', checked: false },
-      { value: 'accessories', label: 'Accessories', checked: false },
+      { value: 'goalkeeper', label: 'Goalkeeper', checked: false },
+      { value: 'defender', label: 'Defender', checked: false },
+      { value: 'midfielder', label: 'Midfielder', checked: true },
+      { value: 'forward', label: 'Forward', checked: false },
     ],
   },
   {
-    id: 'size',
-    name: 'Size',
+    id: 'price',
+    name: 'Price',
     options: [
-      { value: '2l', label: '2L', checked: false },
-      { value: '6l', label: '6L', checked: false },
-      { value: '12l', label: '12L', checked: false },
-      { value: '18l', label: '18L', checked: false },
-      { value: '20l', label: '20L', checked: false },
-      { value: '40l', label: '40L', checked: true },
+      { value: '26' },
     ],
   },
 ]

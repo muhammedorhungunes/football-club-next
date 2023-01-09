@@ -20,38 +20,29 @@ const subCategories = [
 ]
 const filters = [
   {
-    id: 'color',
-    name: 'Color',
+    id: 'cardType',
+    name: 'Card Type',
     options: [
-      { value: 'white', label: 'White', checked: false },
-      { value: 'beige', label: 'Beige', checked: false },
-      { value: 'blue', label: 'Blue', checked: true },
-      { value: 'brown', label: 'Brown', checked: false },
-      { value: 'green', label: 'Green', checked: false },
-      { value: 'purple', label: 'Purple', checked: false },
+      { value: 'gold', label: 'Gold', checked: false },
+      { value: 'silver', label: 'Silver', checked: false },
+      { value: 'bronze', label: 'Bronze', checked: true },
     ],
   },
   {
-    id: 'category',
-    name: 'Category',
+    id: 'position',
+    name: 'Position',
     options: [
-      { value: 'new-arrivals', label: 'New Arrivals', checked: false },
-      { value: 'sale', label: 'Sale', checked: false },
-      { value: 'travel', label: 'Travel', checked: true },
-      { value: 'organization', label: 'Organization', checked: false },
-      { value: 'accessories', label: 'Accessories', checked: false },
+      { value: 'goalkeeper', label: 'Goalkeeper', checked: false },
+      { value: 'defender', label: 'Defender', checked: false },
+      { value: 'midfielder', label: 'Midfielder', checked: true },
+      { value: 'forward', label: 'Forward', checked: false },
     ],
   },
   {
-    id: 'size',
-    name: 'Size',
+    id: 'price',
+    name: 'Price',
     options: [
-      { value: '2l', label: '2L', checked: false },
-      { value: '6l', label: '6L', checked: false },
-      { value: '12l', label: '12L', checked: false },
-      { value: '18l', label: '18L', checked: false },
-      { value: '20l', label: '20L', checked: false },
-      { value: '40l', label: '40L', checked: true },
+      { value: '26' },
     ],
   },
 ]
@@ -140,6 +131,44 @@ export default function Example() {
                     </ul>
 
                     {filters.map((section) => (
+
+                      //console.log(section)
+                      section.id === 'Price'  ?
+                      <Disclosure as="div" key={section.id} className="border-t border-gray-200 px-4 py-6 bg-white">
+                        {({ open }) => (
+                          <>
+                            <h3 className="-mx-2 -my-3 flow-root">
+                              <Disclosure.Button className="flex w-full items-center justify-between bg-white px-2 py-3 text-gray-400 hover:text-gray-500">
+                                <span className="font-medium text-gray-900">{section.name}</span>
+                                <span className="ml-6 flex items-center">
+                                  {open ? (
+                                    <MinusIcon className="h-5 w-5" aria-hidden="true" />
+                                  ) : (
+                                    <PlusIcon className="h-5 w-5" aria-hidden="true" />
+                                  )}
+                                </span>
+                              </Disclosure.Button>
+                            </h3>
+                            <Disclosure.Panel className="pt-6">
+                              <div className="space-y-6">
+                                <h1>Hello world</h1>
+
+                              {/* <label for="default-range" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Default range</label>
+                              <input id="default-range" type="range" value="50" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"/> */}
+
+                                {/* {section.options.map((option, optionIdx) => (
+                                  <div key={option.value} className="flex items-center">
+                                     <label for="default-range" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Default range</label>
+                              <input id="default-range" type="range" value="50" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"/>
+                                    
+                                  </div>
+                                ))}  */}
+                              </div>
+                            </Disclosure.Panel>
+                          </>
+                        )}
+                      </Disclosure>
+                      :
                       <Disclosure as="div" key={section.id} className="border-t border-gray-200 px-4 py-6 bg-white">
                         {({ open }) => (
                           <>
