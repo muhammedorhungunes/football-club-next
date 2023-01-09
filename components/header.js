@@ -20,12 +20,12 @@ export default function Header(props) {
     }
     useEffect(()=>{
         //currentPage(name);
-        var temp = navigation;
-      temp.map((item)=>{
+        var temp = [...navigation];
+        temp.map((item)=>{
         if(item.name === name)
-          item.current = false
-        else
           item.current = true
+        else
+          item.current = false
       })
       //console.log(temp)
       setNavigation(temp);
