@@ -6,16 +6,23 @@ import MyCard from "../components/myCards";
 import MarketCards from "../components/marketCards";
 import { useEffect, useState } from "react";
 
+import {
+  getBudget,
+  set
+} from '../components/budgetSlice';
+
+import { useSelector, useDispatch } from 'react-redux';
+
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
-  const [budget, setBudget] = useState("");
+  const budget = useSelector(getBudget);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     fetch("http://challenge.vole.io/budget")
       .then((response) => response.json())
-      .then((data) => setBudget(data));
-    //console.log(budget)
+      .then((data) => dispatch(set(data.budget)));
   }, []);
 
   return (

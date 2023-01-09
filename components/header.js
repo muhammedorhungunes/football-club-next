@@ -1,6 +1,8 @@
 import { useEffect } from "react";
 import { Disclosure } from "@headlessui/react";
 import { useState } from "react";
+import { getBudget, set } from './budgetSlice';
+import { useSelector, useDispatch } from 'react-redux';
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -12,6 +14,8 @@ export default function Header(props) {
     { name: "Market", href: "#", current: false },
   ]);
   const [name, setName] = useState("My Cards");
+  const budget = useSelector(getBudget);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     var temp = [...navigation];
@@ -159,7 +163,7 @@ export default function Header(props) {
                         <div className="flex justify-center items-center text-white w-full h-full float-right m-auto">
                           <p className="mt-2">€</p>
                           <p className="ml-2 mt-2">
-                            {props?.budget.budget + ".00"}
+                            {budget + ".00"}
                           </p>
                         </div>
                       </div>
