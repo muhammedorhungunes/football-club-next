@@ -2,6 +2,8 @@ import { Fragment, useEffect, useState, useRef } from 'react'
 import { Dialog, Disclosure, Transition } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
 import { MinusIcon, PlusIcon, ArrowLongDownIcon, ArrowLongUpIcon } from '@heroicons/react/20/solid'
+import Card from '../components/card'
+import CardModal from './cardModal'
 
 
 const sortOptions = [
@@ -62,19 +64,7 @@ export default function Example() {
     fetch('http://challenge.vole.io/cards/mycards')
         .then(response => response.json())
         .then(data => setMyCards(data));
-      //console.log(myCards)
   },[])
-
-  function modalOpen(cardId){
-    setOpen(true);
-    fetch('http://challenge.vole.io/cards/'+cardId)
-      .then(response => response.json())
-      .then(data => setSelectedCard(data));   
-  }
-
-  function closeModal(){
-    setOpen(false);
-  }
 
   return (
     <div className="bg-gray-100 m-16 rounded-lg">
@@ -275,174 +265,10 @@ export default function Example() {
                 ))}
               </form>
               <div className="lg:col-span-3 flex flex-wrap">
-                {myCards.map((card) => (
-                  <div className="h-[346px] rounded-lg w-[200px] bg-white m-2 drop-shadow-md cursor-pointer" key={card.id} onClick={()=> modalOpen(card.id)}>
-                    <div className='flex flex-row h-5/6 w-full bg-white rounded-t-lg'>
-                      <img src={card.photoUrl}></img>
-                    </div>
-                    <div className='flex flex-row justify-center items-center m-2'>
-                      <div className=' flex h-8 w-16 m-auto' >
-                        € {card.price + '.00'}
-                      </div>
-                      <div className=' flex h-8 rounded-lg border-[1px] border-[#E8282B] w-16 m-auto' >
-                        <p className='text-[#E8282B] m-auto cursor-pointer'>
-                          Sell
-                        </p>
-                      </div>
-                    </div>
-                  </div>  
-                ))}
+                <Card myCards={myCards} setOpen={setOpen} setSelectedCard={setSelectedCard}></Card>
                 {
                   open ? 
-                  <Transition.Root show={open} as={Fragment} className=''>
-                    <Dialog as="div" className="relative z-10 " initialFocus={cancelButtonRef} onClose={setOpen}>
-                      <Transition.Child
-                        as={Fragment}
-                        enter="ease-out duration-300"
-                        enterFrom="opacity-0"
-                        enterTo="opacity-100"
-                        leave="ease-in duration-200"
-                        leaveFrom="opacity-100"
-                        leaveTo="opacity-0"
-                      >
-                        <div className="fixed inset-0 bg-opacity-75 transition-opacity" />
-                      </Transition.Child>
-
-                      <div className="fixed inset-0 z-10 overflow-y-auto">
-                        <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
-                          <Transition.Child
-                            as={Fragment}
-                            enter="ease-out duration-300"
-                            enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                            enterTo="opacity-100 translate-y-0 sm:scale-100"
-                            leave="ease-in duration-200"
-                            leaveFrom="opacity-100 translate-y-0 sm:scale-100"
-                            leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                          >
-                            <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-4xl w-[914px] h-[860px]">
-                              <div className="bg-white">
-                                <div className={selectedCard?.cardType === 'Gold' ? 'bg-gradient-to-t from-[#A3873C] to-[#E3D294] flex items-center justify-center  w-[914px] h-[382px] relative' : selectedCard?.cardType === 'Silver' ? 'bg-gradient-to-t from-[#808080] to-[#DFDFDF] flex items-center justify-center  w-[914px] h-[382px] relative' : selectedCard?.cardType === 'Bronze' ? 'bg-gradient-to-t from-[#9C6D3E] to-[#E8C8A9] flex items-center justify-center  w-[914px] h-[382px] relative' : ''} >
-                                  <div className='w-[200px] h-[200px] '>
-                                    <img  src={selectedCard?.photoUrl}></img>
-                                  </div>
-                                  <div className='flex bg-gray-500 w-10 h-10 items-center justify-center rounded-lg absolute top-4 left-[840px] cursor-pointer' onClick={()=> closeModal()}>
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6 text-white">
-                                      <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                                    </svg>
-                                  </div>
-                                </div>
-                                <div className='flex flex-row w-full h-[144px]'>
-                                  <div className='grid grid-cols-1 w-1/4 h-[96px] rounded m-10'>
-                                    <div className='w-full'>
-                                      <p className='text-red-500 text-xl'>
-                                        {selectedCard?.name}
-                                      </p>
-                                    </div>
-                                    <div className='w-full text-xs '>
-                                      <p>
-                                        {selectedCard?.position}
-                                      </p>
-                                    </div>
-                                  </div>
-                                  <div className='flex bg-gray-100 w-1/2 h-[96px] rounded m-10 '>
-                                    <p className='flex items-center justify-center m-auto'>
-                                      € {selectedCard?.price + '.00'} 
-                                    </p>
-                                    <div className='bg-red-500 rounded-lg flex items-center justify-center w-1/2 h-10 m-auto'>
-                                      <p className='flex justify-center items-center m-auto text-white'>
-                                        Sell
-                                      </p>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div className='flex flex-row w-full h-[220px] items-center justify-center '>
-                                  <div className='w-11/12 h-3/4 bg-gray-100 rounded-lg '>
-                                    <div className='flex flex-row'>
-                                      <p className='ml-4 mt-2'>
-                                        Attributes
-                                      </p>
-                                    </div>
-                                    <div className='flex flex-row justify-center items-center'>
-                                      <div className='w-[118px] h-[96px] bg-white ml-4 rounded-lg'>
-                                        <p className=''>
-                                          Pace
-                                        </p>
-                                        <p>
-                                          {selectedCard?.attributes.pace + '/100'}
-                                        </p>
-                                      </div>
-                                      <div className='w-[118px] h-[96px] bg-white ml-4 rounded-lg'>
-                                        <p>
-                                          Shooting
-                                        </p>
-                                        <p>
-                                          {selectedCard?.attributes.shooting + '/100'}
-                                        </p>
-                                      </div>
-                                      <div className='w-[118px] h-[96px] bg-white ml-4 rounded-lg'>
-                                        <p>
-                                          Passing
-                                        </p>
-                                        <p>
-                                          {selectedCard?.attributes.passing + '/100'}
-                                        </p>
-                                      </div>
-                                      <div className='w-[118px] h-[96px] bg-white ml-4 rounded-lg'>
-                                        <p>
-                                          Dribbling
-                                        </p>
-                                        <p>
-                                          {selectedCard?.attributes.dribbling + '/100'}
-                                        </p>
-                                      </div>
-                                      <div className='w-[118px] h-[96px] bg-white ml-4 rounded-lg'>
-                                        <p>
-                                          Defending
-                                        </p>
-                                        <p>
-                                          {selectedCard?.attributes.defending + '/100'}
-                                        </p>
-                                      </div>
-                                      <div className='w-[118px] h-[96px] bg-white ml-2 rounded-lg'>
-                                        <p>
-                                          Physical
-                                        </p>
-                                        <p className='font-bold'>
-                                          {selectedCard?.attributes.physical + '/100'}
-                                        </p>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div className='flex flex-row w-11/12 h-3/4 ml-10'>
-                                  <div className='bg-gray-100 w-[421px] h-[96px] rounded-lg'>
-                                    <div className='m-4 text-sm'>
-                                      <p>
-                                        Team
-                                      </p>
-                                      <p className='text-lg font-bold'>
-                                        {selectedCard?.team}
-                                      </p>
-                                    </div>
-                                  </div>
-                                  <div className='bg-gray-100 w-[421px] h-[96px] rounded-lg ml-2'>
-                                    <div className='m-4 text-sm'>
-                                    <p>
-                                      Card type
-                                    </p>
-                                    <p className='text-lg font-bold'>
-                                       {selectedCard?.cardType}
-                                      </p>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </Dialog.Panel>
-                          </Transition.Child>
-                        </div>
-                      </div>
-                    </Dialog>
-                  </Transition.Root> 
+                  <CardModal selectedCard={selectedCard} setOpen={setOpen} open={open}></CardModal>
                   : 
                   ''
                 }
