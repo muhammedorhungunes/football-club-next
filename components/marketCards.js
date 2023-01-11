@@ -4,6 +4,10 @@ import { XMarkIcon } from '@heroicons/react/24/outline'
 import { MinusIcon, PlusIcon, ArrowLongUpIcon , ArrowLongDownIcon} from '@heroicons/react/20/solid'
 import Card from '../components/card'
 import CardModal from './cardModal'
+import Pagination from './pagination'
+import { selectPaginate } from './paginateSlice';
+import { useSelector, useDispatch } from 'react-redux';
+
 
 const sortOptions = [
   { name: 'Most Popular', href: '#', current: true },
@@ -58,12 +62,18 @@ export default function Example() {
   const [open, setOpen] = useState(false)
   const cancelButtonRef = useRef(null)
   const [selectedCard, setSelectedCard] = useState();
+  const [cardsPerPage] = useState(8);
+  const currentPage = useSelector(selectPaginate);
 
   useEffect(()=>{
     fetch('http://challenge.vole.io/cards/market')
         .then(response => response.json())
         .then(data => setMyCards(data));
   },[])
+
+  const indexOfLastPost = currentPage * cardsPerPage;
+  const indexOfFirstPost = indexOfLastPost - cardsPerPage;
+  const currentCards = myCards.slice(indexOfFirstPost, indexOfLastPost);
 
   return (
     <div className="bg-gray-100 m-16 rounded-lg">
@@ -227,13 +237,16 @@ export default function Example() {
                 ))}
               </form>
               <div className="lg:col-span-3 flex flex-wrap">
-                <Card myCards={myCards} setOpen={setOpen} setSelectedCard={setSelectedCard}></Card>
+                <Card myCards={currentCards} setOpen={setOpen} setSelectedCard={setSelectedCard}></Card>
                 {
                   open ? 
                   <CardModal selectedCard={selectedCard} setOpen={setOpen} open={open}></CardModal>
                   : 
                   ''
                 }
+                <div className='w-full m-1'>
+                  <Pagination  cardsPerPage={cardsPerPage} totalMarketCards={myCards.length} />
+                </div>
               </div>
             </div>
           </section>
