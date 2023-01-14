@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Disclosure } from "@headlessui/react";
 import { useState } from "react";
-import { getBudget, set } from './budgetSlice';
+import { getBudget } from './budgetSlice';
 import { useSelector, useDispatch } from 'react-redux';
 
 function classNames(...classes) {
