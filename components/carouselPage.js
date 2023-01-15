@@ -1,6 +1,8 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { ArrowLeftIcon,ArrowRightIcon } from '@heroicons/react/24/outline'
+
 
 export default function CarouselPage() {
   const [carousel, setCarousel] = useState([
@@ -87,15 +89,22 @@ export default function CarouselPage() {
               key={index}
               data-bs-target="#carouselDarkVariant"
               data-bs-slide-to={index.toString()}
-              className={item.current ? "active " : ""}
+              className={item.current ? "active bg-white" : ""}
               aria-current={item.current ? "true" : "false"}
               aria-label="Slide 1"
               onClick={() => setName(item.name)}
             ></button>
           ))}
         </div>
+        <div className="carousel-indicators absolute right-0 top-1/3 left-0 flex justify-center p-0 mb-4">
+        <p className="text-white text-6xl w-full">
+                NEW BRONZE CARDS
+              </p>
+             
+        </div>
 
         <div className="carousel-inner relative w-full overflow-hidden">
+        
           {carousel.map((item, index) => (
             <div
               className={
@@ -112,35 +121,28 @@ export default function CarouselPage() {
                 className="block w-full"
                 alt={item.name}
               />
+              
             </div>
           ))}
         </div>
 
         <button
-          className=" text-white carousel-control-prev absolute top-0 bottom-0 flex items-center justify-center p-0 text-center border-0 hover:outline-none hover:no-underline focus:outline-none focus:no-underline left-0"
+          className="carousel-control-prev absolute top-0 bottom-0 flex items-center justify-center p-0 text-center border-0 hover:outline-none hover:no-underline focus:outline-none focus:no-underline "
           type="button"
           data-bs-target="#carouselDarkVariant"
           data-bs-slide="prev"
           onClick={() => previousCarousel()}
         >
-          <span
-            className="carousel-control-prev-icon inline-block bg-no-repeat text-white fill-white"
-            aria-hidden="true"
-          ></span>
-          <span className="visually-hidden">Previous</span>
+          <ArrowLeftIcon className="w-8 h-8"></ArrowLeftIcon>
         </button>
         <button
-          className="carousel-control-next absolute top-0 bottom-0 flex items-center justify-center p-0 text-center border-0 hover:outline-none hover:no-underline focus:outline-none focus:no-underline right-0"
+          className="carousel-control-next absolute top-0 bottom-0 right-32 flex items-center justify-center p-0 text-center border-0 hover:outline-none hover:no-underline focus:outline-none focus:no-underline "
           type="button"
           data-bs-target="#carouselDarkVariant"
           data-bs-slide="next"
           onClick={() => nextCarousel()}
         >
-          <span
-            className="carousel-control-next-icon inline-block bg-no-repeat"
-            aria-hidden="true"
-          ></span>
-          <span className="visually-hidden">Next</span>
+          <ArrowRightIcon className="w-8 h-8"></ArrowRightIcon>
         </button>
       </div>
     </>
