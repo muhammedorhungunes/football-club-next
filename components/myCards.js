@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useState, useRef, lazy } from 'react'
 import Card from '../components/card'
 import CardModal from './cardModal'
 import Filter from '../components/filter'
@@ -39,7 +39,7 @@ export default function MyCards() {
                 <Card myCards={myCards} setOpen={setOpen} setSelectedCard={setSelectedCard}></Card>
                 {
                   open ? 
-                  <CardModal selectedCard={selectedCard} setOpen={setOpen} open={open}></CardModal>
+                  <CardModal selectedCard={selectedCard} setOpen={setOpen} open={open} setSelectedCard={setSelectedCard}></CardModal>
                   : 
                   ''
                 }

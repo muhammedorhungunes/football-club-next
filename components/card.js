@@ -1,10 +1,10 @@
 export default function Card(props) {
     function modalOpen(cardId){
-        props?.setOpen(true);
-        fetch('http://challenge.vole.io/cards/'+cardId)
-          .then(response => response.json())
-          .then(data => props?.setSelectedCard(data));   
-      }
+      setTimeout(() => { props?.setOpen(true)},500);
+      fetch('http://challenge.vole.io/cards/'+cardId)
+      .then(response => response.json())
+      .then(data => {props?.setSelectedCard(data); console.log(data)});    
+    }
   return (
     <>
       {props.myCards.map((card) => (

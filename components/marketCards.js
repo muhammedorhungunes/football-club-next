@@ -48,7 +48,7 @@ export default function MarketCards() {
                 <Card myCards={currentCards} setOpen={setOpen} setSelectedCard={setSelectedCard}></Card>
                 {
                   open ? 
-                  <CardModal selectedCard={selectedCard} setOpen={setOpen} open={open}></CardModal>
+                  <CardModal selectedCard={selectedCard} setOpen={setOpen} open={open} setSelectedCard={setSelectedCard}></CardModal>
                   : 
                   ''
                 }

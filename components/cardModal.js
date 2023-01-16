@@ -6,6 +6,7 @@ export default function CardModal(props) {
 
     function closeModal(){
         props.setOpen(false);
+        props.setSelectedCard({});
     }
   return (
     <>
@@ -97,6 +98,43 @@ export default function CardModal(props) {
                         </div>
                       </div>
                     </div>
+                    {props?.selectedCard?.position === 'Goalkeeper' ?
+                    <div className="flex flex-row w-full h-[220px] items-center justify-center ">
+                    <div className="w-11/12 h-3/4 bg-gray-100 rounded-lg ">
+                      <div className="flex flex-row">
+                        <p className="ml-4 mt-2">Attributes</p>
+                      </div>
+                      <div className="flex flex-row justify-center items-center">
+                        <div className="w-[118px] h-[96px] bg-white ml-4 rounded-lg">
+                          <p className="">Pace</p>
+                          <p>{props?.selectedCard?.attributes?.pace + "/100"}</p>
+                        </div>
+                        <div className="w-[118px] h-[96px] bg-white ml-4 rounded-lg">
+                          <p>Shooting</p>
+                          <p>{props?.selectedCard?.attributes?.shooting + "/100"}</p>
+                        </div>
+                        <div className="w-[118px] h-[96px] bg-white ml-4 rounded-lg">
+                          <p>Passing</p>
+                          <p>{props?.selectedCard?.attributes?.passing + "/100"}</p>
+                        </div>
+                        <div className="w-[118px] h-[96px] bg-white ml-4 rounded-lg">
+                          <p>Dribbling</p>
+                          <p>{props?.selectedCard?.attributes?.dribbling + "/100"}</p>
+                        </div>
+                        <div className="w-[118px] h-[96px] bg-white ml-4 rounded-lg">
+                          <p>Defending</p>
+                          <p>{props?.selectedCard?.attributes?.defending + "/100"}</p>
+                        </div>
+                        <div className="w-[118px] h-[96px] bg-white ml-2 rounded-lg">
+                          <p>Physical</p>
+                          <p className="font-bold">
+                            {props?.selectedCard?.attributes?.physical + "/100"}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                    :
                     <div className="flex flex-row w-full h-[220px] items-center justify-center ">
                       <div className="w-11/12 h-3/4 bg-gray-100 rounded-lg ">
                         <div className="flex flex-row">
@@ -105,33 +143,35 @@ export default function CardModal(props) {
                         <div className="flex flex-row justify-center items-center">
                           <div className="w-[118px] h-[96px] bg-white ml-4 rounded-lg">
                             <p className="">Pace</p>
-                            <p>{props?.selectedCard?.attributes.pace + "/100"}</p>
+                            <p>{props?.selectedCard?.attributes?.pace + "/100"}</p>
                           </div>
                           <div className="w-[118px] h-[96px] bg-white ml-4 rounded-lg">
                             <p>Shooting</p>
-                            <p>{props?.selectedCard?.attributes.shooting + "/100"}</p>
+                            <p>{props?.selectedCard?.attributes?.shooting + "/100"}</p>
                           </div>
                           <div className="w-[118px] h-[96px] bg-white ml-4 rounded-lg">
                             <p>Passing</p>
-                            <p>{props?.selectedCard?.attributes.passing + "/100"}</p>
+                            <p>{props?.selectedCard?.attributes?.passing + "/100"}</p>
                           </div>
                           <div className="w-[118px] h-[96px] bg-white ml-4 rounded-lg">
                             <p>Dribbling</p>
-                            <p>{props?.selectedCard?.attributes.dribbling + "/100"}</p>
+                            <p>{props?.selectedCard?.attributes?.dribbling + "/100"}</p>
                           </div>
                           <div className="w-[118px] h-[96px] bg-white ml-4 rounded-lg">
                             <p>Defending</p>
-                            <p>{props?.selectedCard?.attributes.defending + "/100"}</p>
+                            <p>{props?.selectedCard?.attributes?.defending + "/100"}</p>
                           </div>
                           <div className="w-[118px] h-[96px] bg-white ml-2 rounded-lg">
                             <p>Physical</p>
                             <p className="font-bold">
-                              {props?.selectedCard?.attributes.physical + "/100"}
+                              {props?.selectedCard?.attributes?.physical + "/100"}
                             </p>
                           </div>
                         </div>
                       </div>
                     </div>
+                    }
+                    
                     <div className="flex flex-row w-11/12 h-3/4 ml-10">
                       <div className="bg-gray-100 w-[421px] h-[96px] rounded-lg">
                         <div className="m-4 text-sm">

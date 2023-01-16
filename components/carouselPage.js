@@ -1,8 +1,7 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { ArrowLeftIcon,ArrowRightIcon } from '@heroicons/react/24/outline'
-
+import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/24/outline";
 
 export default function CarouselPage() {
   const [carousel, setCarousel] = useState([
@@ -96,15 +95,13 @@ export default function CarouselPage() {
             ></button>
           ))}
         </div>
-        <div className="carousel-indicators absolute right-0 top-1/3 left-0 flex justify-center p-0 mb-4">
-        <p className="text-white text-6xl w-full">
-                NEW BRONZE CARDS
-              </p>
-             
+        <div className="carousel-indicators absolute right-0 top-48 left-0 flex justify-center p-0 mb-4">
+          <p className="text-white text-6xl w-full font-bold">NEW</p>
         </div>
-
+        <div className="carousel-indicators absolute right-0 top-64 left-0 flex justify-center p-0 mb-4">
+          <p className="text-white text-6xl w-full font-bold">BRONZE CARDS</p>
+        </div>
         <div className="carousel-inner relative w-full overflow-hidden">
-        
           {carousel.map((item, index) => (
             <div
               className={
@@ -121,13 +118,12 @@ export default function CarouselPage() {
                 className="block w-full"
                 alt={item.name}
               />
-              
             </div>
           ))}
         </div>
 
         <button
-          className="carousel-control-prev absolute top-0 bottom-0 flex items-center justify-center p-0 text-center border-0 hover:outline-none hover:no-underline focus:outline-none focus:no-underline "
+          className="carousel-control-prev absolute top-0 left-0  p-0 text-center border-0 hover:outline-none hover:no-underline focus:outline-none focus:no-underline "
           type="button"
           data-bs-target="#carouselDarkVariant"
           data-bs-slide="prev"
