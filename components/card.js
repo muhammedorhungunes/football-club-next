@@ -1,9 +1,9 @@
 export default function Card(props) {
     function modalOpen(cardId){
-      setTimeout(() => { props?.setOpen(true)},500);
+      setTimeout(() => { props?.setOpen(true)},100);
       fetch('http://challenge.vole.io/cards/'+cardId)
       .then(response => response.json())
-      .then(data => {props?.setSelectedCard(data); console.log(data)});    
+      .then(data => {props?.setSelectedCard(data);});    
     }
   return (
     <>

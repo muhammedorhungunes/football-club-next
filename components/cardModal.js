@@ -1,13 +1,13 @@
-import { Dialog, Transition } from '@headlessui/react'
-import { Fragment, useRef } from 'react'
+import { Dialog, Transition } from "@headlessui/react";
+import { Fragment, useRef } from "react";
 
 export default function CardModal(props) {
-    const cancelButtonRef = useRef(null)
+  const cancelButtonRef = useRef(null);
 
-    function closeModal(){
-        props.setOpen(false);
-        props.setSelectedCard({});
-    }
+  function closeModal() {
+    props.setOpen(false);
+    props.setSelectedCard({});
+  }
   return (
     <>
       <Transition.Root show={props?.open} as={Fragment} className="">
@@ -98,80 +98,111 @@ export default function CardModal(props) {
                         </div>
                       </div>
                     </div>
-                    {props?.selectedCard?.position === 'Goalkeeper' ?
-                    <div className="flex flex-row w-full h-[220px] items-center justify-center ">
-                    <div className="w-11/12 h-3/4 bg-gray-100 rounded-lg ">
-                      <div className="flex flex-row">
-                        <p className="ml-4 mt-2">Attributes</p>
-                      </div>
-                      <div className="flex flex-row justify-center items-center">
-                        <div className="w-[118px] h-[96px] bg-white ml-4 rounded-lg">
-                          <p className="">Pace</p>
-                          <p>{props?.selectedCard?.attributes?.pace + "/100"}</p>
-                        </div>
-                        <div className="w-[118px] h-[96px] bg-white ml-4 rounded-lg">
-                          <p>Shooting</p>
-                          <p>{props?.selectedCard?.attributes?.shooting + "/100"}</p>
-                        </div>
-                        <div className="w-[118px] h-[96px] bg-white ml-4 rounded-lg">
-                          <p>Passing</p>
-                          <p>{props?.selectedCard?.attributes?.passing + "/100"}</p>
-                        </div>
-                        <div className="w-[118px] h-[96px] bg-white ml-4 rounded-lg">
-                          <p>Dribbling</p>
-                          <p>{props?.selectedCard?.attributes?.dribbling + "/100"}</p>
-                        </div>
-                        <div className="w-[118px] h-[96px] bg-white ml-4 rounded-lg">
-                          <p>Defending</p>
-                          <p>{props?.selectedCard?.attributes?.defending + "/100"}</p>
-                        </div>
-                        <div className="w-[118px] h-[96px] bg-white ml-2 rounded-lg">
-                          <p>Physical</p>
-                          <p className="font-bold">
-                            {props?.selectedCard?.attributes?.physical + "/100"}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                    :
-                    <div className="flex flex-row w-full h-[220px] items-center justify-center ">
-                      <div className="w-11/12 h-3/4 bg-gray-100 rounded-lg ">
-                        <div className="flex flex-row">
-                          <p className="ml-4 mt-2">Attributes</p>
-                        </div>
-                        <div className="flex flex-row justify-center items-center">
-                          <div className="w-[118px] h-[96px] bg-white ml-4 rounded-lg">
-                            <p className="">Pace</p>
-                            <p>{props?.selectedCard?.attributes?.pace + "/100"}</p>
+                    {props?.selectedCard?.position === "Goalkeeper" ? (
+                      <div className="flex flex-row w-full h-[220px] items-center justify-center ">
+                        <div className="w-11/12 h-3/4 bg-gray-100 rounded-lg ">
+                          <div className="flex flex-row">
+                            <p className="ml-4 mt-2">Attributes</p>
                           </div>
-                          <div className="w-[118px] h-[96px] bg-white ml-4 rounded-lg">
-                            <p>Shooting</p>
-                            <p>{props?.selectedCard?.attributes?.shooting + "/100"}</p>
-                          </div>
-                          <div className="w-[118px] h-[96px] bg-white ml-4 rounded-lg">
-                            <p>Passing</p>
-                            <p>{props?.selectedCard?.attributes?.passing + "/100"}</p>
-                          </div>
-                          <div className="w-[118px] h-[96px] bg-white ml-4 rounded-lg">
-                            <p>Dribbling</p>
-                            <p>{props?.selectedCard?.attributes?.dribbling + "/100"}</p>
-                          </div>
-                          <div className="w-[118px] h-[96px] bg-white ml-4 rounded-lg">
-                            <p>Defending</p>
-                            <p>{props?.selectedCard?.attributes?.defending + "/100"}</p>
-                          </div>
-                          <div className="w-[118px] h-[96px] bg-white ml-2 rounded-lg">
-                            <p>Physical</p>
-                            <p className="font-bold">
-                              {props?.selectedCard?.attributes?.physical + "/100"}
-                            </p>
+                          <div className="flex flex-row justify-center items-center">
+                            <div className="w-[118px] h-[96px] bg-white ml-4 rounded-lg">
+                              <p className="">Diving</p>
+                              <p>
+                                {props?.selectedCard?.attributes?.diving +
+                                  "/100"}
+                              </p>
+                            </div>
+                            <div className="w-[118px] h-[96px] bg-white ml-4 rounded-lg">
+                              <p>Handling</p>
+                              <p>
+                                {props?.selectedCard?.attributes?.handling +
+                                  "/100"}
+                              </p>
+                            </div>
+                            <div className="w-[118px] h-[96px] bg-white ml-4 rounded-lg">
+                              <p>Kicking</p>
+                              <p>
+                                {props?.selectedCard?.attributes?.kicking +
+                                  "/100"}
+                              </p>
+                            </div>
+                            <div className="w-[118px] h-[96px] bg-white ml-4 rounded-lg">
+                              <p>Positioning</p>
+                              <p>
+                                {props?.selectedCard?.attributes?.positioning +
+                                  "/100"}
+                              </p>
+                            </div>
+                            <div className="w-[118px] h-[96px] bg-white ml-4 rounded-lg">
+                              <p>Reflexes</p>
+                              <p>
+                                {props?.selectedCard?.attributes?.reflexes +
+                                  "/100"}
+                              </p>
+                            </div>
+                            <div className="w-[118px] h-[96px] bg-white ml-2 rounded-lg">
+                              <p>Speed</p>
+                              <p className="font-bold">
+                                {props?.selectedCard?.attributes?.speed +
+                                  "/100"}
+                              </p>
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                    }
-                    
+                    ) : (
+                      <div className="flex flex-row w-full h-[220px] items-center justify-center ">
+                        <div className="w-11/12 h-3/4 bg-gray-100 rounded-lg ">
+                          <div className="flex flex-row">
+                            <p className="ml-4 mt-2">Attributes</p>
+                          </div>
+                          <div className="flex flex-row justify-center items-center">
+                            <div className="w-[118px] h-[96px] bg-white ml-4 rounded-lg">
+                              <p className="">Pace</p>
+                              <p>
+                                {props?.selectedCard?.attributes?.pace + "/100"}
+                              </p>
+                            </div>
+                            <div className="w-[118px] h-[96px] bg-white ml-4 rounded-lg">
+                              <p>Shooting</p>
+                              <p>
+                                {props?.selectedCard?.attributes?.shooting +
+                                  "/100"}
+                              </p>
+                            </div>
+                            <div className="w-[118px] h-[96px] bg-white ml-4 rounded-lg">
+                              <p>Passing</p>
+                              <p>
+                                {props?.selectedCard?.attributes?.passing +
+                                  "/100"}
+                              </p>
+                            </div>
+                            <div className="w-[118px] h-[96px] bg-white ml-4 rounded-lg">
+                              <p>Dribbling</p>
+                              <p>
+                                {props?.selectedCard?.attributes?.dribbling +
+                                  "/100"}
+                              </p>
+                            </div>
+                            <div className="w-[118px] h-[96px] bg-white ml-4 rounded-lg">
+                              <p>Defending</p>
+                              <p>
+                                {props?.selectedCard?.attributes?.defending +
+                                  "/100"}
+                              </p>
+                            </div>
+                            <div className="w-[118px] h-[96px] bg-white ml-2 rounded-lg">
+                              <p>Physical</p>
+                              <p className="font-bold">
+                                {props?.selectedCard?.attributes?.physical +
+                                  "/100"}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+
                     <div className="flex flex-row w-11/12 h-3/4 ml-10">
                       <div className="bg-gray-100 w-[421px] h-[96px] rounded-lg">
                         <div className="m-4 text-sm">
